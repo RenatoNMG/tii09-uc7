@@ -36,10 +36,5 @@ class Pizza{
 }
 
 
-$pizza = new Pizza("Calabresa", "Média", 30.00);
-echo($pizza);
-$pizza->setPreco(20);
-echo($pizza);
-
 
 ?>
