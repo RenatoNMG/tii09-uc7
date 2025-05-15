@@ -14,8 +14,8 @@ class Pizza{
     }
 
     public function getId(): float { return $this->id; }
-    public function getSabor(): float { return $this->sabor; }
-    public function getTamanho(): float { return $this->tamanho; }
+    public function getSabor(): string { return $this->sabor; }
+    public function getTamanho(): string { return $this->tamanho; }
     public function getPreco(): float { return $this->preco; }
     
 
