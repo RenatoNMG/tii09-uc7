@@ -3,9 +3,15 @@
 require_once 'ContatoDAO.php';
 $dao = new ContatoDAO();
 
-if (isset($_POST['nome'])){
+if (isset($_POST['nome']) && isset($_POST['telefone']) && isset($_POST['email']) && isset($_POST['endereco'])){
 
-    $contato = New Contato(null,$_POST['nome']);
+    $endereco = null;
+    if(isset($_POST['endereco'])){
+        $endereco = $_POST['endereco'];
+    }
+
+
+    $contato = New Contato(null,$_POST['nome'],$_POST['telefone'],$_POST['email'],$_POST['endereco']);
     $dao->create($contato);
 
     header("location: index.php");
@@ -26,6 +32,15 @@ if (isset($_POST['nome'])){
     <form action="contato_form.php" method="post">
         <label>Nome:</label>
         <input type="text" name="nome" require>
+
+        <label>Telefone:</label>
+        <input type="text" name="telefone" require>
+
+        <label>Email:</label>
+        <input type="text" name="email" require>
+
+        <label>Emdereço:</label>
+        <input type="text" name="endereco">
 
         <button type="submit">Salvar</button>
 
