@@ -42,10 +42,30 @@ class PizzaDAO {
         $stmt->bindParam(':preco', $preco);
         $stmt->execute();
     }
+    public function getByid(int $id) : ?Pizza{
+        $stmt = $this->db->prepare("SELECT * FROM pizza WHERE id = :id");
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $row? new Pizza(
+            $row['id'],
+            $row['sabor'],
+            $row['tamanho'],
+            $row['preco']
+        ) : null;
+    }
+    public function delete(int $id) : void{
+        $stmt = $this->db->prepare("DELETE FROM pizza WHERE id = :id");
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+    
+    
+    }
 }
 
-
-
+// $pizza = new PizzaDAO();
+// print_r($pizza->getByid(6)) ;
 
 
 

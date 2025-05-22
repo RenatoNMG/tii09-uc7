@@ -2,9 +2,10 @@
 
 class Pizza{
 
+    private string $id;
     private string $sabor;
     private string $tamanho;
-    private float $preco;
+    private string $preco;
 
     public function __construct($sabor,$tamanho,$preco){
         $this->sabor = $sabor;
@@ -13,7 +14,7 @@ class Pizza{
         
     }
 
-    public function getId(): float { return $this->id; }
+    public function getId(): string { return $this->id; }
     public function getSabor(): string { return $this->sabor; }
     public function getTamanho(): string { return $this->tamanho; }
     public function getPreco(): float { return $this->preco; }
