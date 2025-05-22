@@ -2,33 +2,63 @@
 
 
 require_once "Produto.php";
-require_once "Database.php.php";
+require_once "Database.php";
 class produtoDAO{
     private $db;
 
 
     public function __construct()
     {
-        $this->db = produtoDAO::getInstance();
+        $this->db = Database::getInstance();
     }
 
     public function getAll() : array{
 
-        return [];
+        $sql = "SELECT * FROM produtos;";
+        $stmt = $this->db->query($sql);
+        $produtos = [];
+
+        while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+
+            $produtos[] = new Produto
+            ($row['id'],
+            $row['nome'],
+            $row['preco'],
+            $row['ativo'],
+            $row['dataDeCadastro'],
+            $row['dataDeValidade']);
+
+        }
+
+        return $produtos;
     }
 
-    public function getById(): ?Produto{
+    public function getById(int $id): ?Produto{
+        
+        //prepara 
+        //bind
+        //execute()
 
-        return null;
+        $sql = "SELECT * FROM produtos WHERE id = :id;";
 
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([':id'=>$id]);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $row? new Produto
+            ($row['id'],
+            $row['nome'],
+            $row['preco'],
+            $row['ativo'],
+            $row['dataDeCadastro'],
+            $row['dataDeValidade']): null;
+        
     }
 
     public function create(Produto $produto): void{
 
     }
 
-    public function createInseguro(Produto $produto): void
-    {
+    public function createInseguro(Produto $produto): void{
         $sql = "INSERT INTO produtos (nome, preco, ativo, dataDeCadastro, dataDeValidade) VALUES
                 ({$produto->getNome()}, 
                 {$produto->getPreco()}, 
@@ -47,5 +77,12 @@ class produtoDAO{
 
     }
 }
+
+
+$dao = new produtoDAO();
+echo "<pre>";
+print_r($dao->getById(1));
+echo "</pre>";
+
 
 ?>
