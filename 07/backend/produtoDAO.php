@@ -55,6 +55,16 @@ class produtoDAO{
     }
 
     public function create(Produto $produto): void{
+        $sql = "INSERT INTO produtos (nome,preco,ativo,dataDeCadastro,dataDeValidade) VALUES 
+        (:nome,:preco,:ativo,:cadastro,:validade)";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([
+            ':nome' => $produto->getNome(),
+            ':preco' => $produto->getPreco(),
+            ':ativo' => $produto->getAtivo(),
+            ':cadastro' => $produto->getDataDeCadastro(),
+            ':validade' => $produto->getDataDeValidade()
+        ]);
 
     }
 
@@ -70,6 +80,17 @@ class produtoDAO{
     }
 
     public function update(Produto $produto): void{
+        $sql = "UPDATE produtos SET nome = :nome, preco = :preco, ativo = :ativo, dataDeCadastro = :cadastro, dataDeValidade = :validade WHERE id = :id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([
+            'id' => $produto->getId(),
+            ':nome' => $produto->getNome(),
+            ':preco' => $produto->getPreco(),
+            ':ativo' => $produto->getAtivo(),
+            ':cadastro' => $produto->getDataDeCadastro(),
+            ':validade' => $produto->getDataDeValidade()
+
+        ]);
 
     }
 
@@ -80,8 +101,9 @@ class produtoDAO{
 
 
 $dao = new produtoDAO();
+$produto = new Produto(1, 'atualizado', 6.90, 1,'2025-12-10', '2025-10-10');
 echo "<pre>";
-print_r($dao->getById(1));
+$dao->update($produto);
 echo "</pre>";
 
 
