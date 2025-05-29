@@ -95,6 +95,11 @@ class produtoDAO{
     }
 
     public function delete(int $id) : void{
+        $sql = "DELETE FROM produtos WHERE id = :id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([
+            ':id' => $id
+        ]);
 
     }
 }
@@ -103,7 +108,7 @@ class produtoDAO{
 $dao = new produtoDAO();
 $produto = new Produto(1, 'atualizado', 6.90, 1,'2025-12-10', '2025-10-10');
 echo "<pre>";
-$dao->update($produto);
+$dao->delete(3);
 echo "</pre>";
 
 

@@ -1,0 +1,130 @@
+/* Reset básico para consistência entre navegadores */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Cor de fundo suave e texto escuro */
+body {
+  background-color: #f0f8ff;
+  color: #333;
+  line-height: 1.6;
+  font-size: 16px;
+  padding: 20px;
+}
+
+/* Cabeçalhos com cores vibrantes e espaçamento */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Verdana', sans-serif;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+h1 { color: #ff6347; }
+h2 { color: #4682b4; }
+h3 { color: #32cd32; }
+h4 { color: #ff4500; }
+h5 { color: #8a2be2; }
+h6 { color: #ff1493; }
+
+/* Parágrafos com espaçamento adequado */
+p {
+  margin-bottom: 1em;
+  line-height: 1.8;
+}
+
+/* Links com efeitos de transição */
+a {
+  color: #1e90ff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #ff6347;
+}
+
+/* Listas com marcadores personalizados */
+ul {
+  list-style-type: none;
+  padding-left: 20px;
+}
+
+ul li {
+  position: relative;
+  margin-bottom: 0.5em;
+}
+
+ul li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #ff6347;
+}
+
+/* Estilo para tabelas com bordas e cores alternadas */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table, th, td {
+  border: 1px solid #ddd;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #4682b4;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Estilo para botões com efeitos de hover */
+button {
+  background-color: #32cd32;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #228b22;
+}
+
+/* Formulários com espaçamento e bordas suaves */
+input[type="text"],
+input[type="email"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 1em;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+input[type="submit"] {
+  background-color: #ff6347;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+  background-color: #ff4500;
+}
