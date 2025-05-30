@@ -73,7 +73,7 @@ $clientes = $daoC->getAll();
             <td>
                 <a href="#">Detalhes</a>
                 <a href="#">Editar</a>
-                <a href="./backend/cliente_delete.php?id=<?= $cli->getId(); ?>">Excluir</a>
+                <a href="./backend/cliente_delete.php?id=<?=$cli->getId();?>">Excluir</a>
             </td>
 
         </tr>

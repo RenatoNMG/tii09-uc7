@@ -20,7 +20,7 @@ public function getAll() :array{
 
     while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         $clientes[] = new Cliente(
-            null,
+            $row['id'],
             $row['nome'],
             $row['cpf'],
             $row['dataDeNascimento'],
