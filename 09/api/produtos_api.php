@@ -10,26 +10,26 @@ if($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 }
 // (Acima) Para funcionar com o frontend
 
-require_once __DIR__ . '/../dao/ClienteDAO.php';
+require_once __DIR__ . '/../dao/ProdutoDAO.php';
 
-$dao = new ClienteDAO();
+$dao = new ProdutoDAO();
 $action = $_GET['action'] ?? null;
 $id = isset($_GET['id']) ? $_GET['id'] : null;
 $inputBody = json_decode(file_get_contents('php://input'), true);
 
 switch ($action) {
-    case 'listar': // GET
+    case 'listar': // GET ok produto
         echo json_encode($dao->getAll());
         break;
 
-    case 'buscar': // GET
+    case 'buscar': // GET ok
         if ($id) {
-            $cliente = $dao->getById($id);
-            if ($cliente)
-                echo json_encode($cliente);
+            $produto = $dao->getById($id);
+            if ($produto)
+                echo json_encode($produto);
             else {
                 http_response_code(404);
-                echo json_encode(["error" => "Cliente não encontrado!"]);
+                echo json_encode(["error" => "Produto não encontrado!"]);
             }
         } else {
             http_response_code(400);
@@ -37,18 +37,18 @@ switch ($action) {
         }
         break;
 
-    case 'cadastrar': // POST
+    case 'cadastrar': // POST ok
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && $inputBody) {
-            $cli = new Cliente(null, $inputBody['nome'], $inputBody['cpf'], $inputBody['dataDeNascimento'], $inputBody['ativo']);
-            if($dao->create($cli))
+            $pro = new Produto(null, $inputBody['nome'], $inputBody['preco'], $inputBody['ativo'], $inputBody['dataDeCadastro'], $inputBody['dataDeValidade']);
+            if($dao->create($pro))
             {
                 http_response_code(201);
-                echo json_encode(['success' => 'Cliente cadastrado']);
+                echo json_encode(['success' => 'Produto cadastrado']);
             }
             else 
             {
                 http_response_code(500);
-                echo json_encode(['error' => 'Cliente não cadastrado!']);
+                echo json_encode(['error' => 'Produto não cadastrado!']);
             }
         } else {
             http_response_code(400);
@@ -56,10 +56,10 @@ switch ($action) {
         }
         break;
 
-    case 'atualizar': // PUT
+    case 'atualizar': // PUT ok
         if ($_SERVER['REQUEST_METHOD'] == 'PUT' && $inputBody && $id) {
-            $cli = new Cliente($id, $inputBody['nome'], $inputBody['cpf'], $inputBody['dataDeNascimento'], $inputBody['ativo']);
-            if($dao->update($cli))
+            $pro = $pro = new Produto($id, $inputBody['nome'], $inputBody['preco'], $inputBody['ativo'], $inputBody['dataDeCadastro'], $inputBody['dataDeValidade']);
+            if($dao->update($pro))
             {
                 http_response_code(204);
                 echo json_encode(['success' => 'Cliente atualizado']);

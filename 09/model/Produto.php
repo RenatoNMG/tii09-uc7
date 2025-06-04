@@ -1,6 +1,6 @@
 <?php
 
-class Produto
+class Produto  implements JsonSerializable
 {
 
     private ?int $id;
@@ -10,20 +10,14 @@ class Produto
     private string $dataDeCadastro;
     private ?string $dataDeValidade;
 
-    public function __construct(
-        ?int $id,
-        string $nome,
-        float $preco,
-        bool $ativo,
-        string $dataDeCadastro,
-        ?string $dataDeValidade
-    ) {
+    public function __construct(?int $id, string $nome, float $preco, bool $ativo, string $dataDeCadastro, ?string $dataDeValidade)
+    {
         $this->id = $id;
-        $this->nome =  $nome;
-        $this->preco =  $preco;
-        $this->ativo =  $ativo;
-        $this->dataDeCadastro =  $dataDeCadastro;
-        $this->dataDeValidade =  $dataDeValidade;
+        $this->nome = $nome;
+        $this->preco = $preco;
+        $this->ativo = $ativo;
+        $this->dataDeCadastro = $dataDeCadastro;
+        $this->dataDeValidade = $dataDeValidade;
     }
 
     // Getters
@@ -34,4 +28,17 @@ class Produto
     public function getDataDeCadastro(): string { return $this->dataDeCadastro; }
     public function getDataDeValidade(): ?string { return $this->dataDeValidade; }
 
+
+    public function jsonSerialize(): mixed
+    {
+        return [
+            'id' => $this->id,
+            'nome' => $this->nome,
+            'preco' => $this->preco,
+            'ativo' => $this->ativo,
+            'dataDeCadastro' => $this->dataDeCadastro,
+            'dataDeValidade' => $this->dataDeValidade
+        ];
+    }
 }
+
