@@ -53,11 +53,11 @@ class ProdutoDAO
         $stmt = $this->db->prepare($sql);
         
         return $stmt->execute([
-            'nome' => $produto->getNome(),
-            'preco' => $produto->getPreco(),
-            'ativo' => $produto->getAtivo(),
-            'dataDeCadastro' => $produto->getDataDeCadastro(),
-            'dataDeValidade' => $produto->getDataDeValidade()
+            ':nome' => $produto->getNome(),
+            ':preco' => $produto->getPreco(),
+            ':ativo' => $produto->getAtivo(),
+            ':dataDeCadastro' => $produto->getDataDeCadastro(),
+            ':dataDeValidade' => $produto->getDataDeValidade()
 
         ]);
     }
