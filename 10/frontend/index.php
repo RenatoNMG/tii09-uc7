@@ -17,3 +17,7 @@ $isLogged = isset($_SESSION['token']);
     <?php endif; ?>
 </nav>
 <p>Bem-vindo ao sistema!</p>
+
+<?php if ($isLogged): ?>
+    <a href="paginaprotegida.php">Pagina protegida</a>
+<?php endif; ?>
