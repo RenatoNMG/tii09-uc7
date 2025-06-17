@@ -27,8 +27,6 @@ class ProdutoDAO
 
 
 
-
-
     public function getByid(int $id)
     {
         $stmt = $this->dao->prepare("SELECT * FROM produtos WHERE id = :id;");
@@ -40,8 +38,15 @@ class ProdutoDAO
 
 
 
-    public function creat(Produto $produto){
-
+    public function create(Produto $produto){
+        $sql = $this->dao->prepare("INSERT INTO produtos (nome, preco, ativo, dataDeCadastro, dataDeValidade) VALUES (:nome,:preco,:ativo,:dataDeCadastro,:dataDeValidade)");
+        $sql->execute([
+            ':nome' => $produto->getNome(),
+            ':preco' => $produto->getPreco(),
+            ':ativo' => $produto->getAtivo(),
+            ':dataDeCadastro' => $produto->getDataDeCadastro(),
+            ':dataDeValidade' => $produto->getDataDeValidade()
+        ]);
     }
 
 
@@ -63,6 +68,10 @@ class ProdutoDAO
 
 $teste = new ProdutoDAO();
 
+$produto = new Produto(null,'roseli', 1,1,'1969-05-05','3000-05-05');
+
+
 echo "<pre>";
-print_r($teste->getAll());
+$teste->create($produto);
+print_r($produto);
 echo "</pre>";
