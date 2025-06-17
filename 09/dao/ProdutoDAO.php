@@ -85,7 +85,7 @@ class ProdutoDAO
     {
         $stmt = $this->db->prepare("DELETE FROM produtos WHERE id = :id");
         $stmt->execute([
-            'id' => $id
+            ':id' => $id
         ]);
         return true;
     }
