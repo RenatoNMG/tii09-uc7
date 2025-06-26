@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculadora BTUs</title>
+</head>
+<body>
+  <p>tamanho do ambiente (m²)</p>
+  <input type="number" id="ambiente" />
+
+  <p>quantas janelas</p>
+  <input type="number" id="janelas" />
+
+  <button id="calcular">calcular</button>
+
+  <p id="resultado">resultado</p>
+
+  <script>
+    document.getElementById('calcular').addEventListener('click', function () {
+      // pega os valores dos inputs
+      const ambiente = parseInt(document.getElementById('ambiente').value) || 0;
+      const janelas = parseInt(document.getElementById('janelas').value) || 0;
+
+      // calcula resultado (igual no python)
+      let resultado = ambiente * 600 + 100;
+
+      // lógica igual ao if/elif python
+      if (resultado < 10000) {
+        resultado = 9000;
+      } else if (resultado < 14000) {
+        resultado = 12000;
+      } else if (resultado < 20000) {
+        resultado = 18000;
+      }
+
+      // exibe resultado na página
+      document.getElementById('resultado').innerText = `${resultado} BTUs`;
+    });
+  </script>
+</body>
+</html>
