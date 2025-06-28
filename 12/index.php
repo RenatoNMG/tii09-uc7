@@ -9,7 +9,7 @@ $user = getLoggedUser();
     <a href="./fornecedores/listar.php">Fornecedores</a> |
     <?php if ($user): ?>
         <a href="./produtos/criar.php">Novo Produto</a> |
-        <a href="./fornecedores/criar.php">Novo Fornecedores</a> |
+        <a href="./fornecedores/criar.php">Novo Fornecedor</a> |
         <a href="./logout.php">Sair (<?= htmlspecialchars($user->getnome()) ?>)</a>
     <?php else: ?>
         <a href="./login.php">Login</a> |
